@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors');
 
 //creamos el servidor
 const app = express();
@@ -6,6 +7,7 @@ const app = express();
 // Invocamos la creacion de Base de Datos
 require("./base-orm/sqlite-init");  // crear base si no existe
 app.use(express.json()); // para poder leer json en el body
+app.use(cors())
 
 app.use(express.json()); // para poder interpretar los datos en formato json en el body
 
