@@ -13,7 +13,11 @@ router.get("/api/inmuebles", async function (req, res, next) {
       [Op.eq]: req.query.Numero_Catastral,
     };
   }
-  
+  if (req.query.Ubicacion != undefined && req.query.Ubicacion !== "") {
+    where.Ubicacion = {
+      [Op.like]: "%" + req.query.Ubicacion + "%",
+    };
+  }
   const Pagina = req.query.Pagina ?? 1;
   const TamañoPagina = 50;
   const { count, rows } = await db.inmuebles.findAndCountAll({

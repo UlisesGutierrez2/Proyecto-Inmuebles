@@ -31,6 +31,11 @@ function Menu() {
                 Vencimientos
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/inmuebles">
+                Inmuebles
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
