@@ -28,7 +28,7 @@ app.use(vencimientosRouter);
 
 //Levantamos el servidor MIENTRAS no se esten ejecutando los TEST
 if (!module.parent) {   // si no es llamado por otro modulo, es decir, si es el modulo principal -> levantamos el servidor
-    const port = process.env.PORT || 3000;   // en produccion se usa el puerto de la variable de entorno PORT
+    const port = process.env.PORT || 4000;   // en produccion se usa el puerto de la variable de entorno PORT
     app.locals.fechaInicio = new Date();
     app.listen(port, () => {
       console.log(`sitio escuchando en el puerto ${port}`);

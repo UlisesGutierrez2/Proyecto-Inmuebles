@@ -11,9 +11,9 @@ router.get("/api/vencimientos", async function (req, res, next) {
   // consulta de vencimientos con filtros y paginacion
 
   let where = {};
-  if (req.query.Nro_Cuota != undefined && req.query.Nro_Cuota!== "") {
-    where.Nro_Cuota = {
-      [Op.eq]: req.query.Nro_Cuota,
+  if (req.query.Descripcion != undefined && req.query.Descripcion!== "") {
+    where.Descripcion = {
+      [Op.like]: "%" + req.query.Descripcion + "%",
     };
   }
   

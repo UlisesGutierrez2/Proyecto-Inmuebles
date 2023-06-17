@@ -10,25 +10,23 @@ const ListadoVencimientos = ({ lista }) => {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>Avatar</th>
-            <th>Número</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Apodo</th>
-            <th>Edad</th>
-            <th>Dirección IP</th>
+            <th>Nro de cuota</th>
+            <th>Año</th>
+            <th>Fecha 1er Vencimiento</th>
+            <th>Fecha 2do Vencimiento</th>
+            <th>Descripcion</th>
           </tr>
         </thead>
         <tbody>
-          <tr key={'0'}>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>  
+          {lista.map((item) => (
+             <tr key={item.Nro_Cuota}>
+              <td>{item.Nro_Cuota}</td>
+              <td>{item.Año}</td>
+              <td>{item.Fecha_1er_vencimiento}</td>
+              <td>{item.Fecha_2do_vencimiento}</td>
+              <td>{item.Descripcion}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

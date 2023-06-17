@@ -31,8 +31,8 @@ const Vencimientos = () => {
         <div className="card-body">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
-              <label className="form-label">Razon Social:</label>
-              <input type="text" className="form-control" {...register('RazonSocial')} />
+              <label className="form-label">Descripcion:</label>
+              <input type="text" className="form-control" {...register('Descripcion')} />
             </div>
             <button type="submit" className="btn btn-primary">Buscar</button>
           </form>
