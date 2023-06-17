@@ -1,0 +1,30 @@
+{
+  "name": "trabajo-practico-integrador-entrega1",
+  "version": "1.0.0",
+  "description": "TPI Backend Grupo9-3k1",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "jest --testTimeout=10000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://labsys.frc.utn.edu.ar/gitlab/desarrollo-de-software1/tpis-2023/3k1-grupo-9/trabajo-practico-integrador-entrega1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aa-sqlite": "^1.0.29",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "sequelize": "^6.31.1",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22",
+    "supertest": "^6.3.3"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
