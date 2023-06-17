@@ -4,6 +4,7 @@ const ListadoVencimientos = ({ lista }) => {
   
   console.log(lista);
   console.log(typeof lista);
+
   return (
     <div className="container mt-3">
       <h3>Vencimientos</h3>
@@ -18,7 +19,7 @@ const ListadoVencimientos = ({ lista }) => {
           </tr>
         </thead>
         <tbody>
-          {lista.map((item) => (
+          {lista.Items.map((item) => (
              <tr key={item.Nro_Cuota}>
               <td>{item.Nro_Cuota}</td>
               <td>{item.Año}</td>
