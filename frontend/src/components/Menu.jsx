@@ -36,6 +36,11 @@ function Menu() {
                 Inmuebles
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/contribuyentes">
+                Contribuyentes
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
