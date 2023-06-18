@@ -15,9 +15,9 @@ router.get("/api/localidades", async function (req, res, next) {
   // consulta de vencimientos con filtros y paginacion
 
   let where = {};
-  if (req.query.CodigoPostal != undefined && req.query.CodigoPostal!== "") {
-    where.CodigoPostal = {
-      [Op.eq]: req.query.CodigoPostal,
+  if (req.query.Nombre_Localidad != undefined && req.query.Nombre_Localidad!== "") {
+    where.Nombre_Localidad = {
+      [Op.like]: "%" + req.query.Nombre_Localidad + "%",
     };
   }
   
