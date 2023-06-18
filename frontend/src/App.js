@@ -5,7 +5,7 @@ import { Inicio } from './components/Inicio';
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Vencimientos from './components/Vencimientos';
 import Inmuebles from './components/Inmuebles'; 
-import Localidades from './components/Localidades'
+import {Localidades} from './components/localidades/Localidades'
 
 function App() {
   return (
