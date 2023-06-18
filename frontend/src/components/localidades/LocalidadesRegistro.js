@@ -56,7 +56,29 @@ export default function LocalidadesRegistro({
 
             </div>
           </div>
+    {/* campo FechaAlta */}
+    <div className="row">
+            <div className="col-sm-4 col-md-3 offset-md-1">
+              <label className="col-form-label" htmlFor="FechaAlta">
+                Fecha Alta<span className="text-danger">*</span>:
+              </label>
+            </div>
+            <div className="col-sm-8 col-md-6">
+            <input
+                type="date"
+                {...register("FechaAlta", {
+                    required: { value: true, message: "Fecha Alta es requerido" }
+                })}
+                className={
+                    "form-control " + (errors?.FechaAlta ? "is-invalid" : "")
+                }
+            />
+            <div className="invalid-feedback">
+                {errors?.FechaAlta?.message}
+            </div>
 
+            </div>
+          </div>
           
 
 
