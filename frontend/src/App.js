@@ -5,6 +5,7 @@ import { Inicio } from './components/Inicio';
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Vencimientos from './components/Vencimientos';
 import Inmuebles from './components/Inmuebles'; 
+import Localidades from './components/Localidades'
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
               <Route path="/inicio" element={<Inicio />} />
               <Route path="/vencimientos" element={<Vencimientos />} />
               <Route path="/inmuebles" element={<Inmuebles />} />
+              <Route path="/localidades" element={<Localidades />} />
+
               <Route path="*" element={<Navigate to="/inicio" replace />} />
             </Routes>
           </div>

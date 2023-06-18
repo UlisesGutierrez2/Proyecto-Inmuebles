@@ -36,6 +36,11 @@ function Menu() {
                 Inmuebles
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/localidades">
+                Localidades
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
