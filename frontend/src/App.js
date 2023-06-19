@@ -3,7 +3,7 @@ import {Menu} from './components/Menu';
 import { Inicio } from './components/Inicio';
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Vencimientos from './components/Vencimientos';
-import Inmuebles from './components/Inmuebles'; 
+import {Inmuebles} from './components/inmuebles/Inmuebles'; 
 import Contribuyentes from './components/Contribuyentes';
 import {Localidades} from './components/localidades/Localidades'
 
