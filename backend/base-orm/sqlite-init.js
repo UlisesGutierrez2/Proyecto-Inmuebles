@@ -85,6 +85,7 @@ async function CrearBaseSiNoExiste() {
     await db.run(
       `CREATE table inmuebles( 
               Numero_Catastral INTEGER PRIMARY KEY AUTOINCREMENT
+            , Ubicacion text NOT NULL
             , Zona text
             , Tipo text
             , Numero_Contribuyente integer

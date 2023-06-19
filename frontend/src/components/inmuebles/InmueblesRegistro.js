@@ -56,10 +56,7 @@ export default function InmueblesRegistro({
 
             </div>
           </div>
-
           
-
-
 
         </fieldset>
 
