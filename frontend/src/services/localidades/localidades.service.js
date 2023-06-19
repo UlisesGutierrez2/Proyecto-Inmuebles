@@ -2,9 +2,9 @@ import axios from "axios";
 
 const urlResource = "http://localhost:4000/api/localidades";
 
-async function Buscar(Nombre, Activo, Pagina) {
+async function Buscar(Nombre_Localidad, Activo, Pagina) {
   const resp = await axios.get(urlResource, {
-    params: { Nombre, Activo, Pagina },
+    params: { Nombre_Localidad, Activo, Pagina },
   });
   return resp.data;
 }

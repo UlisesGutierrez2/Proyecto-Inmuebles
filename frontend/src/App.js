@@ -6,12 +6,14 @@ import Vencimientos from './components/Vencimientos';
 import Inmuebles from './components/Inmuebles'; 
 import Contribuyentes from './components/Contribuyentes';
 import {Localidades} from './components/localidades/Localidades'
+import ModalDialog from "./components/ModalDialog"
 
 function App() {
   return (
     <div>
 
       <BrowserRouter>
+          <ModalDialog />
           <Menu />
           <div className="divBody">
             <Routes>

@@ -129,9 +129,9 @@ router.get("/api/localidades/:id", async function (req, res, next) {
   });
   
   router.delete("/api/localidades/:id", async (req, res) => {
-    // #swagger.tags = ['localidades']
-    // #swagger.summary = 'elimina un Localidad'
-    // #swagger.parameters['id'] = { description: 'identificador del Localidad..' }
+    // #swagger.tags = ['Articulos']
+    // #swagger.summary = 'elimina un Articulo'
+    // #swagger.parameters['id'] = { description: 'identificador del Articulo..' }
   
     let bajaFisica = false;
   
@@ -145,14 +145,13 @@ router.get("/api/localidades/:id", async function (req, res, next) {
     } else {
       // baja logica
       try {
-        let filasBorradas = await db.localidades.destroy({
-          where: { CodigoPostal: req.params.id },
-        });
-        if (filasBorradas === 1) {
-          res.sendStatus(200);
-        } else {
-          res.sendStatus(404);
-        }
+        let data = await db.sequelize.query(
+          "UPDATE localidades SET Activo = case when Activo = 1 then 0 else 1 end WHERE CodigoPostal = :CodigoPostal",
+          {
+            replacements: { CodigoPostal: +req.params.id },
+          }
+        );
+        res.sendStatus(200);
       } catch (err) {
         if (err instanceof ValidationError) {
           // si son errores de validacion, los devolvemos
