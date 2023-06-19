@@ -9,9 +9,9 @@ const { Op, ValidationError } = require("sequelize");
 router.get("/api/contribuyentes", async function (req, res, next) {
 
   let where = {};
-  if (req.query.Nro_Contribuyente != undefined && req.query.Nro_Contribuyente !== "") {
-    where.Nro_Contribuyente = {
-      [Op.eq]: req.query.Nro_Contribuyente,
+  if (req.query.Nombre != undefined && req.query.Nombre !== "") {
+    where.Nombre = {
+      [Op.like]: '%' + req.query.Nombre + '%',
     };
   }
   
@@ -53,7 +53,20 @@ router.get("/api/contribuyentes/:id", async function (req, res, next) {
   res.json(items);
 });
 
-
+/*router.get("/api/contribuyentes/:Nombre", async function (req, res, next) {
+  let items = await db.contribuyentes.findOne({
+    attributes: [
+      "Nro_Contribuyente",
+      "Nombre",
+      "Domicilio",
+      "CodigoPostal",
+      "Barrio",
+      "FechaDeAlta",
+    ],
+    where: { Nombre: req.params.Nombre },
+  });
+  res.json(items);
+});*/
 
 router.post("/api/contribuyentes/", async (req, res) => {
 
