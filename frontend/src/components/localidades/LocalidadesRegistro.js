@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 
 export default function LocalidadesRegistro({
   AccionABMC,
-//  ArticulosFamilias,
   Item,
   Grabar,
   Volver,
@@ -25,7 +24,7 @@ export default function LocalidadesRegistro({
           {/* campo nombre */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
-              <label className="col-form-label" htmlFor="Nombre">
+              <label className="col-form-label" htmlFor="Nombre_Localidad">
                 Nombre<span className="text-danger">*</span>:
               </label>
             </div>
@@ -52,14 +51,37 @@ export default function LocalidadesRegistro({
             <div className="invalid-feedback">
                 {errors?.Nombre_Localidad?.message}
             </div>
-)}
+          )}
 
             </div>
           </div>
 
-          
+          {/* campo CodigoPostal */}
+          <div className="row">
+            <div className="col-sm-4 col-md-3 offset-md-1">
+              <label className="col-form-label" htmlFor="CodigoPostal">
+                Codigo Postal<span className="text-danger">*</span>:
+              </label>
+            </div>
+            <div className="col-sm-8 col-md-6">
+            <input
+                type="text"
+                {...register("CodigoPostal", {
+                required: {
+                    value: true,
+                    message: "Codigo De Barra es requerido",
+                },
+            })}
+            className={
+             "form-control" + (errors?.CodigoPostal ? " is-invalid" : "")
+            }
+        />
+        <div className="invalid-feedback">
+            {errors?.CodigoPostal?.message}
+        </div>
 
-
+            </div>
+          </div>
 
         </fieldset>
 
@@ -90,6 +112,8 @@ export default function LocalidadesRegistro({
                 Revisar los datos ingresados...
             </div>
         )}
+
+
       </div>
     </form>
   );
