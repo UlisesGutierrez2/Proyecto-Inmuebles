@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import LocalidadesBuscar from "./LocalidadesBuscar";
 import ListadoLocalidades from "./ListadoLocalidades";
 import LocalidadesRegistro from "./LocalidadesRegistro";
 //import { articulosFamiliasMockService as articulosfamiliasService } from "../../services/articulosFamilias-mock-service";
-import  {localidadesService}  from "../../services/localidades/localidades.service";
+import { localidadesService } from "../../services/localidades/localidades.service";
 //import { articulosfamiliasService } from "../../services/articulosFamilias.service";
 import modalDialogService from "../../services/localidades/ModalDialog";
 
@@ -19,7 +19,7 @@ function Localidades() {
   const [AccionABMC, setAccionABMC] = useState("L");
 
   const [Nombre, setNombre] = useState("");
- // const [Activo, setActivo] = useState("");
+  const [Activo, setActivo] = useState("");
 
   const [Items, setItems] = useState(null);
   const [Item, setItem] = useState(null); // usado en BuscarporId (Modificar, Consultar)
@@ -27,17 +27,17 @@ function Localidades() {
   const [Pagina, setPagina] = useState(1);
   const [Paginas, setPaginas] = useState([]);
 
- // const [ArticulosFamilias, setArticulosFamilias] = useState(null);
+//  const [ArticulosFamilias, setArticulosFamilias] = useState(null);
 /*
   useEffect(() => {
-    async function BuscarLocalidades() {
+    async function BuscarArticulosFamilas() {
       let data = await articulosfamiliasService.Buscar();
       setArticulosFamilias(data);
     }
-    BuscarLocalidades();
+    BuscarArticulosFamilas();
   }, []);
-
 */
+
   async function Buscar(_pagina) {
     if (_pagina && _pagina !== Pagina) {
       setPagina(_pagina);
@@ -47,7 +47,7 @@ function Localidades() {
       _pagina = Pagina;
     }
 
-    const data = await localidadesService.Buscar(Nombre, _pagina);
+    const data = await localidadesService.Buscar(Nombre, Activo, _pagina);
     setItems(data.Items);
     setRegistrosTotal(data.RegistrosTotal);
 
@@ -71,7 +71,10 @@ function Localidades() {
     BuscarPorId(item, "C"); // paso la accionABMC pq es asincrono la busqueda y luego de ejecutarse quiero cambiar el estado accionABMC
   }
   function Modificar(item) {
-
+    if (!item.Activo) {
+      modalDialogService.Alert("No puede modificarse un registro Inactivo.");
+      return;
+    }
     BuscarPorId(item, "M"); // paso la accionABMC pq es asincrono la busqueda y luego de ejecutarse quiero cambiar el estado accionABMC
   }
 
@@ -81,11 +84,11 @@ function Localidades() {
       CodigoPostal: 0,
       Nombre_Localidad: null,
       FechaFundacion: moment(new Date()).format("YYYY-MM-DD"),
+      Activo: true,
     });
   }
 
 
-/*
   async function ActivarDesactivar(item) {
         modalDialogService.Confirm(
             "Esta seguro que quiere " +
@@ -95,13 +98,13 @@ function Localidades() {
             undefined,
             undefined,
             async () => {
-            await articulosService.ActivarDesactivar(item);
+            await localidadesService.ActivarDesactivar(item);
             await Buscar();
             }
         );
   
     }
-  */
+  
 
   async function Grabar(item) {
     // agregar o modificar
@@ -141,8 +144,8 @@ function Localidades() {
       {AccionABMC=== "L" &&<LocalidadesBuscar
         Nombre={Nombre}
         setNombre={setNombre}
-//        Activo={Activo}
-//        setActivo={setActivo}
+        Activo={Activo}
+        setActivo={setActivo}
         Buscar={Buscar}
         Agregar={Agregar}
         />
@@ -154,7 +157,7 @@ function Localidades() {
           Items,
           Consultar,
           Modificar,
-//          ActivarDesactivar,
+          ActivarDesactivar,
           Pagina,
           RegistrosTotal,
           Paginas,

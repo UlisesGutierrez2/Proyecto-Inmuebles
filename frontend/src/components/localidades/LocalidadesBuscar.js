@@ -1,5 +1,5 @@
 import React from "react";
-export default function LocalidadesBuscar ({Nombre_Localidad, setNombre, Buscar, Agregar}) {
+export default function LocalidadesBuscar ({Nombre, setNombre, Activo, setActivo, Buscar, Agregar}) {
 
     return (
     <form name="FormBusqueda">
@@ -13,10 +13,24 @@ export default function LocalidadesBuscar ({Nombre_Localidad, setNombre, Buscar,
               type="text"
               className="form-control"
               onChange={(e) => setNombre(e.target.value)}
-              value={Nombre_Localidad}
+              value={Nombre}
               maxLength="55"
               autoFocus
             />
+          </div>
+          <div className="col-sm-4 col-md-2">
+            <label className="col-form-label">Activo:</label>
+          </div>
+          <div className="col-sm-8 col-md-4">
+            <select
+              className="form-control"
+              onChange={(e) => setActivo(e.target.value)}
+              value={Activo}
+            >
+              <option value={""}></option>
+              <option value={false}>NO</option>
+              <option value={true}>SI</option>
+            </select>
           </div>
         </div>
   
@@ -28,7 +42,7 @@ export default function LocalidadesBuscar ({Nombre_Localidad, setNombre, Buscar,
           <button
             type="button"
             className="btn btn-primary"
-            onClick={() => Buscar(1) }
+            onClick={() => Buscar() }
           >
             <i className="fa fa-search"> </i> Buscar
           </button>

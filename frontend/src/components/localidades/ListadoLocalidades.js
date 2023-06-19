@@ -1,10 +1,11 @@
 import React from "react";
-
+//import moment from "moment";
 
 export default function ListadoLocalidades({
   Items,
   Consultar,
   Modificar,
+  ActivarDesactivar,
   Pagina,
   RegistrosTotal,
   Paginas,
@@ -18,6 +19,7 @@ export default function ListadoLocalidades({
             <th className="text-center">Codigo Postal</th>
             <th className="text-center">Nombre</th>
             <th className="text-center">Fecha de Fundacion</th>
+            <th className="text-center">Activo</th>
             <th className="text-center text-nowrap">Acciones</th>
           </tr>
         </thead>
@@ -26,10 +28,11 @@ export default function ListadoLocalidades({
             Items.map((Item) => (
               <tr key={Item.CodigoPostal}>
                 <td>{Item.CodigoPostal}</td>
-                <td className="text-end">{Item.Nombre_Localidad}</td>
+                <td>{Item.Nombre_Localidad}</td>
                 <td className="text-end">
                   {Item.FechaFundacion}
                 </td>
+                <td>{Item.Activo ? "SI" : "NO"}</td>
                 <td className="text-center text-nowrap">
                   <button
                     className="btn btn-sm btn-outline-primary"
@@ -45,7 +48,20 @@ export default function ListadoLocalidades({
                   >
                     <i className="fa fa-pencil"></i>
                   </button>
-                  
+                  <button
+                    className={
+                      "btn btn-sm " +
+                      (Item.Activo
+                        ? "btn-outline-danger"
+                        : "btn-outline-success")
+                    }
+                    title={Item.Activo ? "Desactivar" : "Activar"}
+                    onClick={() => ActivarDesactivar(Item)}
+                  >
+                    <i
+                      className={"fa fa-" + (Item.Activo ? "times" : "check")}
+                    ></i>
+                  </button>
                 </td>
               </tr>
             ))}

@@ -37,13 +37,23 @@ const localidades = sequelize.define(
         }
       }
     },
+    Activo: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: "Activo es requerido",
+        }
+      }
+    },
   },
   {
     // pasar a mayusculas
     hooks: {
       beforeValidate: function (localidades, options) {
-        if (typeof localidades.Nombre === "string") {
-          localidades.Nombre = localidades.Nombre.toUpperCase().trim();
+        if (typeof localidades.Nombre_Localidad === "string") {
+          localidades.Nombre_Localidad = localidades.Nombre_Localidad.toUpperCase().trim();
         }
       },
     },

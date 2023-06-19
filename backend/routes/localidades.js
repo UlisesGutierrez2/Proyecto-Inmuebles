@@ -20,6 +20,11 @@ router.get("/api/localidades", async function (req, res, next) {
       [Op.like]: "%" + req.query.Nombre_Localidad + "%",
     };
   }
+  if (req.query.Activo != undefined && req.query.Activo !== "") {
+    // true o false en el modelo, en base de datos es 1 o 0
+    // convierto el string a booleano
+    where.Activo = (req.query.Activo === 'true'); //convierte el valor a booleano 
+  }
   
   const Pagina = req.query.Pagina ?? 1;
   const TamañoPagina = 10;
@@ -28,6 +33,7 @@ router.get("/api/localidades", async function (req, res, next) {
       "CodigoPostal",
       "Nombre_Localidad",
       "FechaFundacion",
+      "Activo"
     ],
     order: [["CodigoPostal", "ASC"]],
     where,
@@ -48,7 +54,8 @@ router.get("/api/localidades/:id", async function (req, res, next) {
     attributes: [
       "CodigoPostal", 
       "Nombre_Localidad",
-      "FechaFundacion"
+      "FechaFundacion",
+      "Activo"
     ],
     where: { CodigoPostal: req.params.id },
   });
@@ -56,18 +63,19 @@ router.get("/api/localidades/:id", async function (req, res, next) {
 });
   
   router.post("/api/localidades/", async (req, res) => {
-    // #swagger.tags = ['contribuyentes']
-    // #swagger.summary = 'agrega un contribuyentes'
+    // #swagger.tags = ['localidades']
+    // #swagger.summary = 'agrega un localidades'
     /*    #swagger.parameters['item'] = {
                   in: 'body',
-                  description: 'nuevo Contribuyente',
-                  schema: { $ref: '#/definitions/contribuyentes' }
+                  description: 'nuevo Localidad',
+                  schema: { $ref: '#/definitions/localidades' }
       } */
     try {
       let data = await db.localidades.create({
         CodigoPostal: req.body.CodigoPostal,
         Nombre_Localidad: req.body.Nombre_Localidad,
         FechaFundacion:req.body.FechaFundacion,
+        Activo:req.body.Activo
       });
       res.status(200).json(data.dataValues); // devolvemos el registro agregado!
     } catch (err) {
@@ -84,14 +92,6 @@ router.get("/api/localidades/:id", async function (req, res, next) {
   });
   
   router.put("/api/localidades/:id", async (req, res) => {
-    // #swagger.tags = ['contribuyentes']
-    // #swagger.summary = 'actualiza un Contribuyente'
-    // #swagger.parameters['id'] = { description: 'identificador del Contribuyente...' }
-    /*    #swagger.parameters['Contribuyente'] = {
-                  in: 'body',
-                  description: 'Contribuyente a actualizar',
-                  schema: { $ref: '#/definitions/contribuyentes' }
-      } */
   
     try {
       let item = await db.localidades.findOne({
@@ -99,6 +99,7 @@ router.get("/api/localidades/:id", async function (req, res, next) {
           "CodigoPostal",
           "Nombre_Localidad",
           "FechaFundacion",
+          "Activo"
         ],
         where: { CodigoPostal: req.params.id },
       });
@@ -109,6 +110,7 @@ router.get("/api/localidades/:id", async function (req, res, next) {
       item.CodigoPostal = req.body.CodigoPostal;
       item.Nombre_Localidad = req.body.Nombre_Localidad;
       item.FechaFundacion = req.body.FechaFundacion;
+      item.Activo = req.body.Activo
       await item.save();
   
   
@@ -127,9 +129,9 @@ router.get("/api/localidades/:id", async function (req, res, next) {
   });
   
   router.delete("/api/localidades/:id", async (req, res) => {
-    // #swagger.tags = ['contribuyentes']
-    // #swagger.summary = 'elimina un Contribuyente'
-    // #swagger.parameters['id'] = { description: 'identificador del Contribuyente..' }
+    // #swagger.tags = ['localidades']
+    // #swagger.summary = 'elimina un Localidad'
+    // #swagger.parameters['id'] = { description: 'identificador del Localidad..' }
   
     let bajaFisica = false;
   

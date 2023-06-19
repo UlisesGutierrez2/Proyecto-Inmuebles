@@ -19,22 +19,25 @@ async function CrearBaseSiNoExiste() {
       `CREATE table localidades( 
               CodigoPostal INTEGER PRIMARY KEY AUTOINCREMENT
             , Nombre_Localidad text NOT NULL UNIQUE
-            , FechaFundacion text NOT NULL UNIQUE);`
+            , FechaFundacion text NOT NULL 
+            , Activo boolean
+          );`
     );
 
     console.log("tabla localidades creada!");
     await db.run(
-      `insert into localidades values	
-      (1,'Cordoba','02/06/1460'),
-      (2,'La Calera','15/11/1500'),
-      (3,'Carlos Paz','19/08/1463'),
-      (4,'La Falda','30/07/1560'),
-      (5,'Embalse','24/10/1680'),
-      (6,'Villa General Belgrano','25/09/1670'),
-      (7,'Rio Cuarto','04/08/1570'),
-      (8,'San Francisco','26/03/1620'),
-      (9,'Río Seco','19/12/1460'),
-      (10,'Villa Dolores','14/29/1620');`
+      `INSERT INTO localidades (Nombre_Localidad, FechaFundacion, Activo)
+      VALUES	
+      ('Cordoba','02/06/1460',1),
+      ('La Calera','15/11/1500',1),
+      ('Carlos Paz','19/08/1463',0),
+      ('La Falda','30/07/1560',1),
+      ('Embalse','24/10/1680',0),
+      ('Villa General Belgrano','25/09/1670',0),
+      ('Rio Cuarto','04/08/1570',1),
+      ('San Francisco','26/03/1620',0),
+      ('Río Seco','19/12/1460',1),
+      ('Villa Dolores','14/29/1620',1);`
     );
   }
 
