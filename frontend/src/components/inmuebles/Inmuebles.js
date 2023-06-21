@@ -6,7 +6,7 @@ import InmueblesRegistro from "./InmueblesRegistro";
 //import { articulosFamiliasMockService as articulosfamiliasService } from "../../services/articulosFamilias-mock-service";
 import  {inmueblesService}  from "../../services/inmuebles/inmuebles.service";
 //import { articulosfamiliasService } from "../../services/articulosFamilias.service";
-import modalDialogService from "../../services/inmuebles/ModalDialog";
+import modalDialogService from "../../services/ModalDialog";
 
 
 function Inmuebles() {

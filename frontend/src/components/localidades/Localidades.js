@@ -6,7 +6,7 @@ import LocalidadesRegistro from "./LocalidadesRegistro";
 //import { articulosFamiliasMockService as articulosfamiliasService } from "../../services/articulosFamilias-mock-service";
 import { localidadesService } from "../../services/localidades/localidades.service";
 //import { articulosfamiliasService } from "../../services/articulosFamilias.service";
-import modalDialogService from "../../services/localidades/ModalDialog";
+import modalDialogService from "../../services/ModalDialog";
 
 function Localidades() {
   const TituloAccionABMC = {
