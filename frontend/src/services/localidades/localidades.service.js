@@ -19,11 +19,7 @@ async function ActivarDesactivar(item) {
 }
 
 async function Grabar(item) {
-  if (item.CodigoPostal === 0) {
     await axios.post(urlResource, item);
-  } else {
-    await axios.post(urlResource, item);
-  }
 }
 
 export const localidadesService = {
