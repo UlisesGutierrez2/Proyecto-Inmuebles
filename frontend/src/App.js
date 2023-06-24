@@ -1,5 +1,6 @@
 import './App.css';
-import {Menu} from './components/Menu';
+import React from 'react';
+import Menu from './components/Menu';
 import { Inicio } from './components/Inicio';
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Vencimientos from './components/Vencimientos';
@@ -7,6 +8,7 @@ import {Inmuebles} from './components/inmuebles/Inmuebles';
 import Contribuyentes from './components/Contribuyentes';
 import {Localidades} from './components/localidades/Localidades'
 import ModalDialog from "./components/ModalDialog"
+import Login from './components/login/login';
 
 function App() {
   return (
@@ -22,6 +24,12 @@ function App() {
               <Route path="/inmuebles" element={<Inmuebles />} />
               <Route path="/contribuyentes" element={<Contribuyentes />} />
               <Route path="/localidades" element={<Localidades />} />
+              <Route
+                path="/login/:componentFrom"
+                element={
+                  <Login />
+                }
+              />
 
               <Route path="*" element={<Navigate to="/inicio" replace />} />
             </Routes>
